@@ -1,0 +1,84 @@
+'use strict';
+
+// made code wait to read untill all file is read
+document.addEventListener("DOMContentLoaded", () => {
+
+//  get element from HTML
+  const btn = document.getElementById('btn'); 
+  const palette1 = document.getElementById('palette1');
+  const palette2 = document.getElementById('palette2');
+  const palette3 = document.getElementById('palette3');
+
+// max value of rgb === 0, max value of rgb === 255
+  let min = 0;
+  let max = 255;
+
+
+  btn.addEventListener('click', coloPicker1);
+  btn.addEventListener('click', coloPicker2);
+  btn.addEventListener('click', coloPicker3);
+  btn.addEventListener('click', showRgb);
+  
+  // change background color of palette1
+  function coloPicker1() {
+    const colorArray = [];
+    for(let i = 0;i < 3 ; i++) {
+      let num = Math.floor(Math.random() * max); 
+      colorArray.push(num);
+    }
+    const paletteColor_text = palette1.getElementsByClassName('paletteColor_text')
+    palette1.style.background =  `rgb( ${colorArray} )`;
+    paletteColor_text[0].textContent =  `rgb( ${colorArray})`
+  }
+
+  // change background color of palette 2
+  function coloPicker2() {
+    const colorArray = [];
+    for(let i = 0;i < 3 ; i++) {
+      let num = Math.floor(Math.random() * max);
+      colorArray.push(num);
+    }
+    const paletteColor_text = palette2.getElementsByClassName('paletteColor_text')
+    palette2.style.background =  `rgb( ${colorArray})`;
+    paletteColor_text[0].textContent =  `rgb( ${colorArray})`
+  }
+
+  //chage background color of palette3
+  function coloPicker3() {
+    const colorArray = [];
+    for(let i = 0;i < 3 ; i++) {
+      let num = Math.floor(Math.random() * max);
+      colorArray.push(num);
+    }
+    
+    const paletteColor_text = palette3.getElementsByClassName('paletteColor_text')
+    palette3.style.background = `rgb( ${colorArray})`;
+    paletteColor_text[0].textContent =  `rgb( ${colorArray})`;
+  }
+
+  // change text color and 
+  function showRgb() {
+    const colorArray = [];
+    for(let i = 0;i < 3 ; i++) {
+      let num = Math.floor(Math.random() * max);
+      colorArray.push(num);
+      if(colorArray[0] >= 80){
+        btn.textContent = "what's your favorite?";
+      } else if(colorArray[1] >= 150) {
+        btn.textContent = "love this color!"
+      } else{
+        btn.textContent = "Say Yes! When it's your favorite"
+      }
+    }
+    btn.style.color = `rgb(${colorArray})`;
+  }
+
+  // remove openign img and text
+  const p = document.getElementsByTagName('p')
+  const img = document.getElementById('img');
+  btn.addEventListener('click', () =>{
+    palette2.removeChild(img);
+    palette1.removeChild(p[0]);
+  });
+
+}, false);
